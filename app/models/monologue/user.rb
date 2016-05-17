@@ -7,6 +7,7 @@ class Monologue::User < ActiveRecord::Base
   validates_presence_of :name
   validates :email , presence: true, uniqueness: true
 
+  attr_accessible :name, :email, :password, :password_confirmation
 
   def can_delete?(user)
     return false if self==user
