@@ -75,6 +75,9 @@ en:
         form:
           title: "Title"
           content: "Content"
+          category: "Category"
+          description: "Description"
+          banner: "Banner URL"
           url:
             caption: "URL<br/><i> This will be filled by default with '%{default_url}'. You can choose your own URL. Do not add '%{root}' at the beginning of your URL.</i>"
             generated_title: "your-post-title"

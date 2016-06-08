@@ -14,7 +14,9 @@ class Monologue::Post < ActiveRecord::Base
   validates :url, uniqueness: true
   validate :url_do_not_start_with_slash
 
-  attr_accessible :published, :tag_list, :title, :content, :url, :published_at
+  attr_accessible :published, :tag_list, :title, :content, :url, :published_at, :category_cd, :description, :banner_url
+
+  as_enum :category, Monologue::Config.post_categories || ["N/A"]
 
   def tag_list= tags_attr
     self.tag!(tags_attr.split(","))

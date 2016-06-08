@@ -5,6 +5,7 @@ require "jquery-rails"
 require "sass-rails"
 require "coffee-rails"
 require "responders"
+require "simple_enum"
 
 module Monologue
   class Engine < Rails::Engine
