@@ -52,6 +52,7 @@ en:
           create: "Create"
       posts:
         index:
+          id: "ID"
           title: "Title"
           edit: "Edit"
           delete: "Delete"
@@ -59,6 +60,7 @@ en:
           not_published: "Not published"
           status: "Published ?"
           author: "Author"
+          published_at: "Date"
         new:
           header: "New monologue"
         create:
