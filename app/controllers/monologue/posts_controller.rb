@@ -1,7 +1,7 @@
 class Monologue::PostsController < Monologue::ApplicationController
   def index
     @page = params[:page].nil? ? 1 : params[:page]
-    @posts = Monologue::Post.page(@page).includes(:user).published
+    @posts = Monologue::Post.paginate(:page => @page, :per_page => Monologue::Config.posts_per_page).includes(:user).published
   end
 
   def show
