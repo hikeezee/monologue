@@ -102,12 +102,12 @@ a.social {
 }
 
 /* tags */
-.tags {
+.categories, .tags {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.tag {
+.category, .tag {
     background: #eeeeee;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
@@ -117,7 +117,7 @@ a.social {
     margin-right: 2px;
 }
 
-.tag-search,
+.category-search, .tag-search,
 .flash-notice {
     padding:8px 35px 8px 14px;
     margin-bottom:18px;

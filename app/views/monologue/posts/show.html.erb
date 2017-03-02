@@ -12,6 +12,10 @@
     <%= raw @post.content %>
   </div>
 
+  <div class="categories" data-monologue="categories">
+    <%= render @post.categories %>
+  </div>
+
 	<div class="tags" data-monologue="tags">
     <%= render @post.tags %>
   </div>

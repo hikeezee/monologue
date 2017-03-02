@@ -4,6 +4,7 @@ module Monologue
     #Why aren't they loaded by default?
     include Monologue::HtmlHelper
     include Monologue::TagsHelper
+    include Monologue::CategoriesHelper
 
     def monologue_admin_form_for(object, options = {}, &block)
       options[:builder] = MonologueAdminFormBuilder

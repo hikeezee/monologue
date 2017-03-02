@@ -1,4 +1,6 @@
 class Monologue::Post < ActiveRecord::Base
+  has_many :categorizations
+  has_many :categories, -> { order "id ASC" }, through: :categorizations, dependent: :destroy
   has_many :taggings
   has_many :tags, -> { order "id ASC" }, through: :taggings, dependent: :destroy
   before_validation :generate_url
@@ -7,6 +9,7 @@ class Monologue::Post < ActiveRecord::Base
   scope :default,  -> {order("published_at DESC, monologue_posts.created_at DESC, monologue_posts.updated_at DESC") }
   scope :published, -> { default.where(published: true).where("published_at <= ?", DateTime.now) }
 
+  default_scope{includes(:categories)}
   default_scope{includes(:tags)}
 
   validates :user_id, presence: true
@@ -14,9 +17,23 @@ class Monologue::Post < ActiveRecord::Base
   validates :url, uniqueness: true
   validate :url_do_not_start_with_slash
 
-  attr_accessible :published, :tag_list, :title, :content, :url, :published_at, :category_cd, :description, :banner_url
+  attr_accessible :published, :category_list, :tag_list, :title, :content, :url, :published_at, :category_cd, :description, :banner_url
 
   as_enum :category, Monologue::Config.post_categories || ["N/A"]
+  
+  def category_list= categories_attr
+    self.category!(categories_attr.split(","))
+  end
+
+  def category_list
+    self.categories.map { |category| category.name }.join(", ") if self.categories
+  end
+
+  def category!(categories_attr)
+    self.categories = categories_attr.map(&:strip).reject(&:blank?).map do |category|
+      Monologue::Category.where(name: category).first_or_create
+    end
+  end
 
   def tag_list= tags_attr
     self.tag!(tags_attr.split(","))

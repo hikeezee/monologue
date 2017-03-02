@@ -4,6 +4,7 @@ Monologue::Engine.routes.draw do
   get "/feed" => "posts#feed", as:  "feed", defaults: {format: :rss}
 
   get "/tags/:tag" =>"tags#show", as: "tags_page"
+  get "/category/:url_id" =>"categories#show", as: "categories_page"
 
   namespace :admin, path: "monologue" do
     get "/" => "posts#index", as:  "" # responds to admin_url and admin_path

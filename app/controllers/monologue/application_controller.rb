@@ -3,10 +3,17 @@ class Monologue::ApplicationController < ApplicationController
 
   layout Monologue::Config.layout if Monologue::Config.layout # TODO: find a way to test that. It was asked in issue #54 (https://github.com/jipiboily/monologue/issues/54)
 
-  before_filter :recent_posts, :all_tags, :archive_posts
+  before_filter :recent_posts, :all_categories, :all_tags, :archive_posts
 
   def recent_posts
     @recent_posts = Monologue::Post.published.limit(3)
+  end
+
+  def all_categories
+    @categories = Monologue::Tag.order("name").select{|t| t.frequency>0}
+    #could use minmax here but it's only supported with ruby > 1.9'
+    @categories_frequency_min = @categories.map{|t| t.frequency}.min
+    @categories_frequency_max = @categories.map{|t| t.frequency}.max
   end
 
   def all_tags

@@ -1,5 +1,6 @@
 <%= post.error_messages %>
 <%= post.text_field :title, label:  t(".title"), class:  "span6" %>
+<%= post.text_field :category_list, label:  raw(t(".categories")) %>
 <%= post.select :category_cd, Monologue::Post.categories.hash, label: t(".category") %>
 <%= post.text_field :banner_url, label:  t(".banner_url") %>
 <%= post.text_area :description, label:  t(".description"), class:  "span12" %>
@@ -31,4 +32,5 @@
     $.fn.datepicker.defaults = $.fn.datepicker.defaults_<%= I18n.locale %>;
   }
   $("#post_tag_list").select2({tags: <%= Monologue::Tag.all.map{|t| t.name }.to_json.html_safe %> });
+  $("#post_category_list").select2({tags: <%= Monologue::Category.all.map{|c| c.name }.to_json.html_safe %> });
 </script>
