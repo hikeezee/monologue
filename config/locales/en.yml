@@ -81,7 +81,6 @@ en:
         form:
           title: "Title"
           content: "Content"
-          category: "Category"
           description: "Description"
           banner: "Banner URL"
           url:

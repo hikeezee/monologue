@@ -35,8 +35,7 @@ module Monologue
                   :gauge_analytics_site_id,
                   :layout,
                   :sidebar,
-                  :preview_size,
-                  :post_categories
+                  :preview_size
 
     def initialize
       @preview_size = 1000;

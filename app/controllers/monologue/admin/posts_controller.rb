@@ -66,6 +66,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:published,:category_list,:tag_list,:title,:content,:url,:published_at,:category_cd,:description,:banner_url)
+    params.require(:post).permit(:published,:category_list,:tag_list,:title,:content,:url,:published_at,:description,:banner_url)
   end
 end
