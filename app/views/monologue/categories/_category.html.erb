@@ -1,1 +1,1 @@
-<span class='category category-<%= category.url_id %>'><%=link_to category.name, category_url(category) %></span>
+<span class='category category-<%= category.url_id %>'><%=link_to category.name, category_url(category), title: "View all posts in " + category.name, rel: "category tag"  %></span>

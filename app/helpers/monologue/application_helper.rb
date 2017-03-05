@@ -15,12 +15,12 @@ module Monologue
       content_for?(:title) ? ((content_for :title) + " | #{Monologue::Config.site_name}") : Monologue::Config.site_name
     end
 
-    def rss_head_link
-      tag("link", href: feed_url, rel: "alternate", title: "RSS", type: "application/rss+xml")
+    def rss_head_link(url=feed_url,title="RSS")
+      tag("link", href: url, rel: "alternate", title: title, type: "application/rss+xml")
     end
 
-    def rss_icon
-      social_icon("rss", feed_url, Monologue::Config.show_rss_icon)
+    def rss_icon(url=feed_url)
+      social_icon("rss", url, Monologue::Config.show_rss_icon)
     end
 
     def github_icon

@@ -2,3 +2,6 @@
   <%= t(".showing_post_with_category")%> <strong>'<%= @category.name %>'</strong>. <%=link_to t(".show_all_posts"),:root %>
 </div>
 <%= render @posts %>
+<% if @page %>
+  <%= render partial: "monologue/posts/pagination" %>
+<% end %>

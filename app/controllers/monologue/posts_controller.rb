@@ -1,7 +1,8 @@
 class Monologue::PostsController < Monologue::ApplicationController
   def index
-    @page = params[:page].nil? ? 1 : params[:page]
+    @page = params[:page].nil? ? 1 : params[:page].to_i
     @posts = Monologue::Post.paginate(:page => @page, :per_page => Monologue::Config.posts_per_page).includes(:user).published
+    @total_pages = @posts.total_pages
   end
 
   def show
@@ -17,9 +18,9 @@ class Monologue::PostsController < Monologue::ApplicationController
 
   def feed
     @posts = Monologue::Post.published.limit(25)
-    if params[:categories].present?
-      categories = Monologue::Category.where(name: params[:categories].split(",")).pluck(:id)
-      @posts = @posts.joins(:categorizations).where("monologue_categorizations.category_id in (?)", categories)
+    if params[:category].present?
+      category = Monologue::Category.where(url_id: params[:category].split(",")).pluck(:id)
+      @posts = @posts.joins(:categorizations).where("monologue_categorizations.category_id in (?)", category)
     end
     if params[:tags].present?
       tags = Monologue::Tag.where(name: params[:tags].split(",")).pluck(:id)
